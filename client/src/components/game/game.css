@@ -1,0 +1,38 @@
+.game {
+    display: flex;
+    margin: 20px;
+    border: cornsilk solid;
+    border-radius: 5px;
+    background: rgba(76, 175, 80, 0.3);
+}
+
+.game::-moz-placeholder {
+    background: rgba(218, 10, 10, 0.377);
+}
+
+#genres {
+    margin: 20px;
+    display: flex;
+    width: max-content ;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+h2 {
+    color: white;
+    display: flex;
+    margin-left: 3rem;
+}
+
+h3 {
+    color: black;
+    margin-left: 2rem;
+    background-color: white;
+    border: indigo solid;
+    border-radius: 2px;
+}
+
+#inf {
+    width: 100%;
+}

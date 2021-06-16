@@ -1,0 +1,47 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
+.inputDiv {
+    display: flex;
+    margin: 1rem;
+}
+
+label{
+    margin-right: 3rem;
+}
+
+#submit {
+    display: flex;
+    align-self: center;
+    width: max-content;
+}
+
+.checks {
+    display: flex;
+}
+
+#reldate{
+    color: black;
+}
+
+#checkboxs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.danger {
+    margin-left: 2rem;
+    color: crimson;
+}
+
+#descr{
+    width:  15rem;
+    height: 5rem;
+}

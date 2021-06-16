@@ -2,8 +2,10 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const { platform } = require('os');
+const { getGames } = require('../func.js');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST,key,
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
@@ -28,12 +30,47 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
+// En sequelize.models están todos los modelos importados como propiedades 
 // Para relacionarlos hacemos un destructuring
-const { Videogame } = sequelize.models;
+const { Videogame , Genre , Platform } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+Videogame.belongsToMany(Genre, { through: 'VideoGame_Genre' });
+Genre.belongsToMany(Videogame, { through: 'VideoGame_Genre' });
+
+Platform.belongsToMany(Videogame, { through: 'VideoGame_Platform' });
+Videogame.belongsToMany(Platform, { through: 'VideoGame_Platform' });
+
+
+///Añadir a db
+
+const cargar_db = async function(){
+  let json = await getGames(`https://api.rawg.io/api/genres?key=${key}`);
+  let g = await getGames(`https://api.rawg.io/api/games?key=${key}`);
+  let json2 = g.results;
+
+  for (let i = 2; i< 6; i++) {
+    let g = await getGames(`https://api.rawg.io/api/games?key=${key}&page=${i}`);
+    json2 = [ ...json2, ...g.results];
+  }
+
+  let generos = [];
+  let plataformas = [];
+
+
+  json.results.forEach(element => {
+    if(!generos.includes(element.name)){generos.push(element.name)}
+  });
+  json2.forEach(element => {
+    element.platforms.forEach(p => {
+      if(!plataformas.includes(p.platform.name)){plataformas.push(p.platform.name)}
+    })
+  });
+
+  generos.forEach(async function(el){ await Genre.create({ name: el}) });
+  plataformas.forEach(async function(el){ await Platform.create({ name: el}) });
+}();
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

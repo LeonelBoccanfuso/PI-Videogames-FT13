@@ -1,0 +1,40 @@
+#title {
+    font-size: 4rem;
+    margin: 2rem;
+}
+
+#imgandtext {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+#text {
+    margin-top: 5rem;
+    font: bolder;
+    font-size: 3rem;
+    width: 20%;
+}
+
+#gotogames{
+    background-color: chartreuse;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    align-content: center;
+    align-self: center;
+    border-radius: 25%;
+    justify-self: center;
+    justify-content: center;
+    margin-left: 40%;
+}
+#bton{
+
+    display: flex;
+    background: none;
+    border: none;
+    margin-top: 15%;
+    color: black;
+    appearance:inherit;
+    font-size: 2rem;
+}
