@@ -19,7 +19,7 @@
     justify-content: space-between;
 }
 
-h2 {
+.datos {
     color: white;
     display: flex;
     margin-left: 3rem;

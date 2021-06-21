@@ -18,6 +18,9 @@ export function getGames(name = "",f = 0,order = "asc",param = "name",page = 1,g
         .then((json) => {
           dispatch({ type: "GET_GAME", payload: json });
         })
+        .catch(err => {
+          dispatch({ type: "GET_GAME", payload: "error" });
+        })
     };
   }
 

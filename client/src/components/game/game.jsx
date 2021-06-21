@@ -13,7 +13,8 @@ export default function Game({game}) {
             }
             
             <div id="inf">
-                <h2>{game.name}</h2>
+                <h2 className="datos">{game.name}</h2>
+                <h3 className="datos">{game.rating}⭐</h3>
                 <hr/>
                 <div id="genres">
                     {

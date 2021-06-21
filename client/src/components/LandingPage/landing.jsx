@@ -16,9 +16,9 @@ export default function Landing(props) {
                  </h2>
             </div>
             <div>
-                <h5 id="gotogames"><Link to="/games" style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                    <div id="bton">Go to games!!</div>
-                </Link></h5>
+                <h5 id="gotogames">
+                    <a style={{ color: 'inherit', textDecoration: 'inherit'}} href="http://localhost:3000/games">Go To Games!!</a>
+                </h5>
             </div>
         </div>
     );

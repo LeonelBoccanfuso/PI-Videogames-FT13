@@ -16,7 +16,7 @@ export function Games(props) {
   });
 
   useEffect(() => {
-    props.getGames([input.search,input.filter,input.order,input.param,input.page]);
+    props.getGames([input.search,input.filter,input.order,input.param,input.page,input.genderfilter]);
     props.getGenres();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input.page]);
@@ -29,12 +29,10 @@ export function Games(props) {
   }
 
   const handleInputChangeFilter = function(e){
+    console.log(e);
     setInput({
       ...input,
-      filter: document.getElementById("filter").value,
-      order: document.getElementById("order").value,
-      param: document.getElementById("by").value,
-      genderfilter: document.getElementById("genderfilter").value,
+      [e.target.name]: e.target.value
     })
   }
   
@@ -57,19 +55,19 @@ export function Games(props) {
   }
 
   function handleNext(event) {
+    event.preventDefault();
     setInput({
       ...input,
       page: input.page + 1,
     })
-    event.preventDefault();
   }
 
   return (
     <div className="container" >
       <div className="filtros">
+        <label >Name: </label>
         <div id="buscador">
           <input name="search" value={input.search} onChange={handleInputChange} type="text" placeholder="Buscar..."/>
-          {!props.games ? (<button hidden>🍳</button>) : (<button onClick={aplicarFiltros}>🍳</button>)}
         </div>
 
         <label >Order: </label>
@@ -101,30 +99,36 @@ export function Games(props) {
               <option value="rating">Rating</option>
           </select>
           <br/>
-        {!props.games ? (<button hidden>Apply</button>) : (<button onClick={aplicarFiltros}>Apply</button>)}
+        {!props.games ? (<button className="apply" hidden>Apply</button>) : (<button className="apply" onClick={aplicarFiltros}>Apply</button>)}
         
       </div>
       <div className="gameList">
         <div className="paginado">
-          {props.games && input.page > 1 &&<button onClick={handlePrev}> Prev</button>}
+          {props.games && input.page > 1 &&<button className="apply" onClick={handlePrev}> Prev</button>}
           <span>  {"Page " + input.page}  </span>
-          {props.games && props.games[14] && <button onClick={handleNext}>Next</button>}
+          {props.games && props.games[14] && <button className="apply" onClick={handleNext}>Next</button>}
         </div>
         <div>
         {
-          !props.games ? (<div id="loadContainer"><div className="preloader"></div></div>) : (
-            props.games && props.games[0] ? (props.games.map(game =>
-                <Link className="link" key={game.id} to={`/games/${game.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                  <Game game={game} />
-                </Link >
-            )) : (<h2>Games not found.</h2>)
+          !props.games ? (
+              <div id="loadContainer"><div className="preloader"></div></div>
+            ) : (
+              props.games && props.games[0] ? (
+                props.games.map(game =>
+                  <Link className="link" key={game.id} to={`/games/${game.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    <Game game={game} />
+                  </Link >
+                )
+              ) : (
+                <h2>Games not found.</h2>
+              )
             )
         }
         </div>
         <div className="paginado">
-          {props.games && input.page > 1 &&<button onClick={handlePrev}> Prev</button>}
+          {props.games && input.page > 1 &&<button className="apply" onClick={handlePrev}> Prev</button>}
           <span>  {"Page " + input.page}  </span>
-          {props.games && props.games[14] && <button onClick={handleNext}>Next</button>}
+          {props.games && props.games[14] && <button className="apply" onClick={handleNext}>Next</button>}
         </div>
       </div>
     </div>

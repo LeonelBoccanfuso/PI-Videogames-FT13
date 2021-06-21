@@ -146,7 +146,7 @@ export function Add(props) {
                 }
               </div>
             </div>
-              <input type="submit" id="submit"/>
+              <input type="submit" id="submit" value="Add!"/>
 
           </form>)
       } </div>):(<h1 style={{ color:"greenyellow"}}>Game Added!</h1>)

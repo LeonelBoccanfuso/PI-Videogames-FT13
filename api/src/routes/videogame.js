@@ -25,7 +25,7 @@ router.get('/', async function(req, res){
     
     if(filtro === 0 || filtro === 1){
         let g = await getGames(`https://api.rawg.io/api/games?key=${key}`);
-    
+        
         let json = g.results;
 
         for (let i = 2; i< 6; i++) {

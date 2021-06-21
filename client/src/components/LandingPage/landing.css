@@ -18,23 +18,27 @@
 
 #gotogames{
     background-color: chartreuse;
-    width: 300px;
+    padding: 2px 2px;
+    width: 200px;
     height: 100px;
     display: flex;
-    align-content: center;
     align-self: center;
-    border-radius: 25%;
     justify-self: center;
     justify-content: center;
     margin-left: 40%;
-}
-#bton{
-
+    border: darkgreen solid;
+    border-radius: 15px;
+    font-size: large;
     display: flex;
-    background: none;
-    border: none;
-    margin-top: 15%;
+    text-align: center;
+    justify-items: center;
+    margin-top: 5%;
+    text-decoration: solid;
     color: black;
+    padding: auto;
+    font-display: center;
     appearance:inherit;
     font-size: 2rem;
+    font-style: oblique;
 }
+

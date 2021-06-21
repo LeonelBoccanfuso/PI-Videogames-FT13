@@ -32,8 +32,10 @@ span {
     margin-right: 5rem;
 }
 
-.select {
+select {
     margin: 5px;
+    border: chartreuse solid;
+    border-radius: 5px;
 }
 
 .gameList {
@@ -49,6 +51,20 @@ span {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+.apply{
+    background-color: chartreuse;
+    border: darkgreen solid;
+    border-radius: 10px;
+    font-size: large;
+    font-style: oblique;
+}
+
+input{
+    margin: 5px;
+    border: chartreuse solid;
+    border-radius: 5px;
 }
 
 .preloader {
