@@ -28,14 +28,6 @@ export function Games(props) {
     });
   }
 
-  const handleInputChangeFilter = function(e){
-    console.log(e);
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value
-    })
-  }
-  
   const aplicarFiltros = function(){
     setInput({
       ...input,
@@ -71,20 +63,20 @@ export function Games(props) {
         </div>
 
         <label >Order: </label>
-          <select name="order" id="order" onChange={handleInputChangeFilter}>
+          <select name="order" id="order" onChange={handleInputChange}>
               <option value="asc"> Ascㅤㅤㅤ🡅</option>
               <option value="Desc">Desㅤㅤㅤ🡇</option>
           </select>
 
         <label >  Filter By: </label>
-          <select name="filter" id="filter" onChange={handleInputChangeFilter}>
+          <select name="filter" id="filter" onChange={handleInputChange}>
               <option value="0">All</option>
               <option value="1">Native</option>
               <option value="2">Added</option>
           </select>
         
         <label >  Gender: </label>
-          <select name="genderfilter" id="genderfilter" onChange={handleInputChangeFilter}>
+          <select name="genderfilter" id="genderfilter" onChange={handleInputChange}>
               <option value="false">--Gender--</option>
               {
                 props.genres && props.genres.map(genre =>(
@@ -94,7 +86,7 @@ export function Games(props) {
           </select>
 
         <label >  Order By: </label>
-          <select name="by" id="by" onChange={handleInputChangeFilter}>
+          <select name="by" id="by" onChange={handleInputChange}>
               <option value="name">Name</option>
               <option value="rating">Rating</option>
           </select>
