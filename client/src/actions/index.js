@@ -1,8 +1,8 @@
-import fetch from "node-fetch";
-export function getGames(name = "",f = 0,order = "asc",param = "name",page = 1,genre = "false") {
+import fetch from "node-fetch";//export function getGames(name = "",f = 0,order = "asc",param = "name",page = 1,genre = "false") {
+export function getGames() {
     return function (dispatch) {
-        dispatch({ type: "GET_GAMES", payload: false });
-        return fetch(`http://localhost:3001/videogames?name=${name}&f=${f}&order=${order}&param=${param}&page=${page}&genre=${genre}`)
+        dispatch({ type: "GET_GAMES", payload: false });// return fetch(`http://localhost:3001/videogames?name=${name}&f=${f}&order=${order}&param=${param}&page=${page}&genre=${genre}`)
+        return fetch(`http://localhost:3001/videogames`)
           .then((response) => response.json())
           .then((json) => {
             dispatch({ type: "GET_GAMES", payload: json });

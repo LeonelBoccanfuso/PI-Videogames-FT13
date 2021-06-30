@@ -47,13 +47,28 @@ Videogame.belongsToMany(Platform, { through: 'VideoGame_Platform' });
 
 const cargar_db = async function(){
   let json = await getGames(`https://api.rawg.io/api/genres?key=${key}`);
-  let g = await getGames(`https://api.rawg.io/api/games?key=${key}`);
-  let json2 = g.results;
+  // let g = await getGames(`https://api.rawg.io/api/games?key=${key}`);
+  // let json2 = g.results;
 
-  for (let i = 2; i< 6; i++) {
-    let g = await getGames(`https://api.rawg.io/api/games?key=${key}&page=${i}`);
-    json2 = [ ...json2, ...g.results];
-  }
+  // for (let i = 2; i< 6; i++) {
+  //   let g = await getGames(`https://api.rawg.io/api/games?key=${key}&page=${i}`);
+  //   json2 = [ ...json2, ...g.results];
+  // }
+  let pr1 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}`))
+  let pr2 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=2`)) 
+  let pr3 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=3`)) 
+  let pr4 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=4`)) 
+  let pr5 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=5`)) 
+  let pr6 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=6`)) 
+  let pr7 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=7`)) 
+
+  let prom = await Promise.all([pr1,pr2,pr3,pr4,pr5,pr6,pr7])
+
+  let json2 = [];
+        
+  prom.forEach((j) => {
+    json2 = [ ...json2, ...j.results]
+  })
 
   let generos = [];
   let plataformas = [];
