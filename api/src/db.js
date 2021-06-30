@@ -47,13 +47,6 @@ Videogame.belongsToMany(Platform, { through: 'VideoGame_Platform' });
 
 const cargar_db = async function(){
   let json = await getGames(`https://api.rawg.io/api/genres?key=${key}`);
-  // let g = await getGames(`https://api.rawg.io/api/games?key=${key}`);
-  // let json2 = g.results;
-
-  // for (let i = 2; i< 6; i++) {
-  //   let g = await getGames(`https://api.rawg.io/api/games?key=${key}&page=${i}`);
-  //   json2 = [ ...json2, ...g.results];
-  // }
   let pr1 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}`))
   let pr2 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=2`)) 
   let pr3 = Promise.resolve(getGames(`https://api.rawg.io/api/games?key=${key}&page=3`)) 
